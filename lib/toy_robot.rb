@@ -10,9 +10,6 @@ require 'toy_robot/simulator'
 module ToyRobot
   def self.simulator
     simulator = Simulator.new(table: [4, 4])
-    loop do
-      puts 'Enter your robot command:'
-      simulator.call(gets.chomp)
-    end
+    loop { simulator.call(gets.chomp) }
   end
 end

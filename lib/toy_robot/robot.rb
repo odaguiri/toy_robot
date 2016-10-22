@@ -50,21 +50,13 @@ module ToyRobot
     private
 
     def placed?
-      return true if @table
-      puts 'Output: Before any action you need to place your robot on the table'
-      false
+      @table ? true : false
     end
 
     def validate_move(coordinate, operation)
       temp = @position.dup
       temp[coordinate] = temp[coordinate].send(operation, 1)
-
-      if @table.valid_position? temp
-        @position = temp
-      else
-        x, y = temp
-        puts "Output: Your robot can`t move to #{x},#{y},#{orientation}"
-      end
+      @position = temp if @table.valid_position? temp
     end
 
     def orient_compass(orientation)

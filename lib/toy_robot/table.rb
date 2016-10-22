@@ -9,13 +9,11 @@ module ToyRobot
     end
 
     def place_robot(robot, position, orientation)
-      if valid_position? position
-        @robot = robot
-        @robot.place(position, orientation)
-        @robot.table = self
-      else
-        puts 'Output: Please set a valid position for this robot'
-      end
+      return unless valid_position? position
+
+      @robot = robot
+      @robot.place(position, orientation)
+      @robot.table = self
     end
 
     def valid_position?(position)

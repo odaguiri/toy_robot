@@ -16,9 +16,7 @@ module ToyRobot
     end
 
     def test_should_not_place_robot_on_invalid_table_place
-      assert_output(/Please set a valid position for this robot/) do
-        @table.place_robot(@robot, [5, 2], Robot::WEST)
-      end
+      @table.place_robot(@robot, [5, 2], Robot::WEST)
 
       refute @robot.position
       refute @robot.orientation
@@ -31,10 +29,13 @@ module ToyRobot
     end
 
     def test_should_not_act_if_the_robot_is_not_placed
-      out = /Output: Before any action you need to place your robot on the table/
-      assert_output(out) { @robot.move }
-      assert_output(out) { @robot.left }
-      assert_output(out) { @robot.right }
+      @robot.move
+      @robot.left
+      @robot.right
+
+      refute @robot.position
+      refute @robot.orientation
+      refute @robot.table
     end
 
     def test_should_move_robot_to_north
@@ -58,7 +59,9 @@ module ToyRobot
 
     def test_should_not_move_robot_to_north
       @table.place_robot @robot, [4, 4], Robot::NORTH
-      assert_output(/Output: Your robot can`t move to 4,5,NORTH/) { @robot.move }
+      @robot.move
+      assert_equal [4, 4], @robot.position
+      assert_equal Robot::NORTH, @robot.orientation
     end
 
     def test_should_turn_robot_from_north_to_south
