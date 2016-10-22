@@ -14,7 +14,7 @@ module ToyRobot
         @robot.place(position, orientation)
         @robot.table = self
       else
-        puts 'Please set a valid position for this robot'
+        puts 'Output: Please set a valid position for this robot'
       end
     end
 

@@ -31,7 +31,7 @@ module ToyRobot
     end
 
     def test_should_not_move_if_the_robot_is_not_placed
-      out = /Please, before any action you need to place your robot on the table/
+      out = /Output: Before any action you need to place your robot on the table/
       assert_output(out) { @robot.move }
     end
 
@@ -56,7 +56,7 @@ module ToyRobot
 
     def test_should_not_move_robot_to_north
       @table.place_robot @robot, [4, 4], Robot::NORTH
-      assert_output(/Your robot can`t move to 4,5,NORTH/) { @robot.move }
+      assert_output(/Output: Your robot can`t move to 4,5,NORTH/) { @robot.move }
     end
   end
 end

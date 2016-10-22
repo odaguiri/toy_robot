@@ -39,7 +39,7 @@ module ToyRobot
 
     def placed?
       return true if @table
-      puts 'Please, before any action you need to place your robot on the table'
+      puts 'Output: Before any action you need to place your robot on the table'
       false
     end
 
@@ -51,7 +51,7 @@ module ToyRobot
         @position = temp
       else
         x, y = temp
-        puts "Your robot can`t move to #{x},#{y},#{@orientation}"
+        puts "Output: Your robot can`t move to #{x},#{y},#{@orientation}"
       end
     end
   end
