@@ -19,5 +19,9 @@ module ToyRobot
       @position = position
       @orientation = orientation
     end
+
+    def report
+      puts "Output: #{@position[0]},#{@position[1]},#{@orientation}"
+    end
   end
 end

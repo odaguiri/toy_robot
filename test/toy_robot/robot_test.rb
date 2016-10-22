@@ -33,5 +33,11 @@ module ToyRobot
       refute robot.orientation
       refute robot.table
     end
+
+    def test_should_report_robot_place
+      robot = Robot.new
+      robot.place([1, 2], Robot::NORTH)
+      assert_output(/Output: 1,2,NORTH/) { robot.report }
+    end
   end
 end
