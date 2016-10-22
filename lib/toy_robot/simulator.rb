@@ -17,16 +17,23 @@ module ToyRobot
     def command(string)
       @method, @params = string.split(' ')
       return place if 'PLACE' == @method
-      if COMMANDS.include? @method
-        @robot.send(@method.downcase)
-      else
-        puts "#{@method} is an invalid command try (PLACE, MOVE, LEFT, RIGHT or REPORT)"
-      end
+      @robot.send(@method.downcase) if COMMANDS.include? @method
     end
 
     def place
-      x, y, orientation = @params.split(',')
-      @table.place_robot @robot, [x.to_i, y.to_i], Robot.const_get(orientation)
+      return unless valid_place_params?
+      pos = [@params[:x], @params[:y]]
+      @table.place_robot @robot, pos, Robot.const_get(@params[:orientation])
+    end
+
+    def valid_place_params?
+      return false if (params = @params.split(',')).size > 3
+      x, y, orientation = params
+      return false unless x =~ /\A\d+\Z/ &&
+                          y =~ /\A\d+\Z/ &&
+                          Robot::ORIENTATIONS.include?(orientation)
+
+      @params = { x: x.to_i, y: y.to_i, orientation: orientation }
     end
   end
 end

@@ -31,10 +31,29 @@ module ToyRobot
       assert_equal Robot::EAST, robot.orientation
     end
 
-    def test_should_warn_on_invalid_command
-      assert_output(/TEST is an invalid command try \(PLACE, MOVE, LEFT, RIGHT or REPORT\)/) do
-        @simulator.call 'TEST'
-      end
+    def test_should_ignore_invalid_command
+      @simulator.call 'TEST'
+      assert_equal [0, 0], robot.position
+      assert_equal Robot::NORTH, robot.orientation
+      assert robot.table
+    end
+
+    def test_should_ignore_invalid_place_command_params
+      @simulator.call 'PLACE A,2,NORTH'
+      assert_equal [0, 0], robot.position
+      assert_equal Robot::NORTH, robot.orientation
+
+      @simulator.call 'PLACE 1,2,NOTHING'
+      assert_equal [0, 0], robot.position
+      assert_equal Robot::NORTH, robot.orientation
+
+      @simulator.call 'PLACE ,,,'
+      assert_equal [0, 0], robot.position
+      assert_equal Robot::NORTH, robot.orientation
+
+      @simulator.call 'PLACE 1,2,SOUTH,TEST' 
+      assert_equal [0, 0], robot.position
+      assert_equal Robot::NORTH, robot.orientation
     end
 
     private
