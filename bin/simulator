@@ -1,0 +1,4 @@
+require_relative '../lib/toy_robot'
+
+# Start our simulator with standard input
+ToyRobot.simulator
