@@ -1,6 +1,11 @@
 module ToyRobot
   # The robot needs to be placed before the movements
   class Robot
+    NORTH = 'NORTH'.freeze
+    EAST = 'EAST'.freeze
+    WEST = 'WEST'.freeze
+    SOUTH = 'SOUTH'.freeze
+
     attr_reader :position, :orientation
     attr_accessor :table
 

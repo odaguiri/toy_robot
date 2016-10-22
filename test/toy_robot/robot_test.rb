@@ -4,20 +4,20 @@ module ToyRobot
   class RobotTest < TestHelper
     def test_should_place_robot_somewhere
       robot = Robot.new
-      robot.place([0, 2], :north)
+      robot.place([0, 2], Robot::NORTH)
 
       assert_equal [0, 2], robot.position
-      assert_equal :north, robot.orientation
+      assert_equal 'NORTH', robot.orientation
     end
 
     def test_should_place_robot_on_valid_table_place
       robot = Robot.new
       table = Table.new([4, 4])
 
-      table.place_robot(robot, [0, 2], :north)
+      table.place_robot(robot, [0, 2], Robot::SOUTH)
 
       assert_equal [0, 2], robot.position
-      assert_equal :north, robot.orientation
+      assert_equal 'SOUTH', robot.orientation
       assert_equal table, robot.table
     end
 
@@ -26,7 +26,7 @@ module ToyRobot
       table = Table.new([4, 4])
 
       assert_output(/Please set a valid position for this robot/) do
-        table.place_robot(robot, [5, 2], :north)
+        table.place_robot(robot, [5, 2], Robot::WEST)
       end
 
       refute robot.position
