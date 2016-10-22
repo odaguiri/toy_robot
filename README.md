@@ -1,30 +1,20 @@
 # Toy Robot Simulator
 
-Please provide your source code, and any test code/data
-you using in developing your solution.
+## Running app
 
-Please send your submission to us via email as a zip file or
-as a link to the repository hosting your code. (If you choose to keep your
-repository private, contact us about adding us to your repository
-as collaborators.) Do not create a pull request against this repository.
+ruby simulator.run
 
-Please engineer your solution to a standard you consider
-suitable for production.
+## Sample files
 
-## Description
+ruby simulator.run -f test/samples/route_1.txt
 
-* The application is a simulation of a toy robot moving
-on a square tabletop, of dimensions 5 units x 5 units.
-* There are no other obstructions on the table surface.
-* The robot is free to roam around the surface of the table,
-but must be prevented from falling to destruction.
-Any movement that would result in the robot falling
-from the table must be prevented, however further
-valid movement commands must still be allowed.
+ruby simulator.run -f test/samples/route_2.txt
 
-## Task
+ruby simulator.run -f test/samples/route_3.txt
 
-Create an application that can read in commands of the following form:
+ruby simulator.run -f test/samples/route_4.txt
+
+## Commands
 
 ```
 PLACE X,Y,F
@@ -34,34 +24,7 @@ RIGHT
 REPORT
 ```
 
-* `PLACE` will put the toy robot on the table in position X,Y
-and facing `NORTH`, `SOUTH`, `EAST` or `WEST`.
-* The origin (0,0) can be considered to be the `SOUTH WEST` most corner.
-* The first valid command to the robot is a `PLACE` command,
-after that, any sequence of commands may be issued, in any order,
-including another `PLACE` command.
-The application should discard all commands in the sequence
-until a valid `PLACE `command has been executed.
-* `MOVE` will move the toy robot one unit forward
-in the direction it is currently facing.
-* `LEFT` and `RIGHT` will rotate the robot 90 degrees
-in the specified direction
-without changing the position of the robot.
-* `REPORT` will announce the X,Y and F of the robot.
-This can be in any form, but standard output is sufficient.
-
-* A robot that is not on the table can choose
-to ignore the `MOVE`, `LEFT`, `RIGHT` and `REPORT` commands.
-* Input can be from a file, or from standard input, as the developer chooses.
-* Provide test data to exercise the application.
-* It is not required to provide any graphical output
-showing the movement of the toy robot.
-
 ## Constraints
-
-The toy robot must not fall off the table during movement.
-This also includes the initial placement of the toy robot.
-Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output:
 
