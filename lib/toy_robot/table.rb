@@ -18,8 +18,6 @@ module ToyRobot
       end
     end
 
-    private
-
     def valid_position?(position)
       position[0] <= @dimension[0] && position[1] <= @dimension[1]
     end
