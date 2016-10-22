@@ -30,9 +30,11 @@ module ToyRobot
       assert_output(/Output: 1,2,NORTH/) { @robot.report }
     end
 
-    def test_should_not_move_if_the_robot_is_not_placed
+    def test_should_not_act_if_the_robot_is_not_placed
       out = /Output: Before any action you need to place your robot on the table/
       assert_output(out) { @robot.move }
+      assert_output(out) { @robot.left }
+      assert_output(out) { @robot.right }
     end
 
     def test_should_move_robot_to_north
@@ -57,6 +59,63 @@ module ToyRobot
     def test_should_not_move_robot_to_north
       @table.place_robot @robot, [4, 4], Robot::NORTH
       assert_output(/Output: Your robot can`t move to 4,5,NORTH/) { @robot.move }
+    end
+
+    def test_should_turn_robot_from_north_to_south
+      @table.place_robot @robot, [4, 4], Robot::NORTH
+      @robot.left
+      @robot.left
+      assert_equal Robot::SOUTH, @robot.orientation
+    end
+
+    def test_should_turn_robot_from_west_to_east
+      @table.place_robot @robot, [4, 4], Robot::WEST
+      @robot.right
+      @robot.right
+      assert_equal Robot::EAST, @robot.orientation
+    end
+
+    def test_should_turn_robot_from_east_to_north
+      @table.place_robot @robot, [3, 2], Robot::EAST
+      @robot.left
+      assert_equal Robot::NORTH, @robot.orientation
+    end
+
+    def test_should_turn_robot_from_south_to_east
+      @table.place_robot @robot, [3, 2], Robot::SOUTH
+      @robot.left
+      assert_equal Robot::EAST, @robot.orientation
+    end
+
+    def test_should_turn_robot_from_south_to_west
+      @table.place_robot @robot, [3, 2], Robot::SOUTH
+      @robot.right
+      assert_equal Robot::WEST, @robot.orientation
+    end
+
+    def test_should_move_robot_to_position_4_4_and_face_to_south
+      @table.place_robot @robot, [0, 0], Robot::SOUTH
+
+      @robot.left
+      assert_equal Robot::EAST, @robot.orientation
+
+      3.times { @robot.move }
+      assert_equal [3, 0], @robot.position
+
+      @robot.left
+      assert_equal Robot::NORTH, @robot.orientation
+
+      4.times { @robot.move }
+      assert_equal [3, 4], @robot.position
+
+      @robot.right
+      assert_equal Robot::EAST, @robot.orientation
+
+      @robot.move
+      assert_equal [4, 4], @robot.position
+
+      @robot.right
+      assert_equal Robot::SOUTH, @robot.orientation
     end
   end
 end
