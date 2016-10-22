@@ -96,6 +96,34 @@ module ToyRobot
       assert_equal Robot::WEST, @robot.orientation
     end
 
+    def test_should_ignore_moves_until_reach_last_position_from_table_south
+      @table.place_robot @robot, [3, 2], Robot::SOUTH
+      10.times { @robot.move }
+      assert_equal [3, 0], @robot.position
+      assert_equal Robot::SOUTH, @robot.orientation
+    end
+
+    def test_should_ignore_moves_until_reach_last_position_from_table_west
+      @table.place_robot @robot, [3, 2], Robot::WEST
+      10.times { @robot.move }
+      assert_equal [0, 2], @robot.position
+      assert_equal Robot::WEST, @robot.orientation
+    end
+
+    def test_should_ignore_moves_until_reach_last_position_from_table_east
+      @table.place_robot @robot, [3, 2], Robot::EAST
+      10.times { @robot.move }
+      assert_equal [4, 2], @robot.position
+      assert_equal Robot::EAST, @robot.orientation
+    end
+
+    def test_should_ignore_moves_until_reach_last_position_from_table_north
+      @table.place_robot @robot, [3, 2], Robot::NORTH
+      10.times { @robot.move }
+      assert_equal [3, 4], @robot.position
+      assert_equal Robot::NORTH, @robot.orientation
+    end
+
     def test_should_move_robot_to_position_4_4_and_face_to_south
       @table.place_robot @robot, [0, 0], Robot::SOUTH
 

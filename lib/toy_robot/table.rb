@@ -17,7 +17,10 @@ module ToyRobot
     end
 
     def valid_position?(position)
-      position[0] <= @dimension[0] && position[1] <= @dimension[1]
+      (position[0] <= @dimension[0] &&
+       position[0] >= 0 &&
+       position[1] <= @dimension[1] &&
+       position[1] >= 0)
     end
   end
 end

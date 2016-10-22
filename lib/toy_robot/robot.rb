@@ -28,7 +28,7 @@ module ToyRobot
       case orientation
       when EAST then validate_move(0, :+)
       when NORTH then validate_move(1, :+)
-      when WEST then validate_move(1, :+)
+      when WEST then validate_move(0, :-)
       when SOUTH then validate_move(1, :-)
       end
     end
