@@ -28,10 +28,10 @@ module ToyRobot
     def move
       return unless placed?
       case @orientation
-        when NORTH then validate_move(1, :+)
-        when EAST then validate_move(0, :+)
-        when SOUTH then validate_move(1, :-)
-        when WEST then validate_move(1, :+)
+      when NORTH then validate_move(1, :+)
+      when EAST then validate_move(0, :+)
+      when SOUTH then validate_move(1, :-)
+      when WEST then validate_move(1, :+)
       end
     end
 
