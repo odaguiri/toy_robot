@@ -3,6 +3,8 @@ module ToyRobot
   class Robot
     ORIENTATIONS = [EAST = 'EAST'.freeze, NORTH = 'NORTH'.freeze,
                     WEST = 'WEST'.freeze, SOUTH = 'SOUTH'.freeze].freeze
+    X = 0
+    Y = 1
 
     attr_reader :position
     attr_accessor :table
@@ -26,10 +28,10 @@ module ToyRobot
     def move
       return unless placed?
       case orientation
-      when EAST then validate_move(0, :+)
-      when NORTH then validate_move(1, :+)
-      when WEST then validate_move(0, :-)
-      when SOUTH then validate_move(1, :-)
+      when EAST then validate_move(X, :+)
+      when NORTH then validate_move(Y, :+)
+      when WEST then validate_move(X, :-)
+      when SOUTH then validate_move(Y, :-)
       end
     end
 
