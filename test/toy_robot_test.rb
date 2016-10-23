@@ -24,4 +24,10 @@ class ToyRobotTest < TestHelper
       ToyRobot.simulator(['-f', 'test/samples/route_4.txt'])
     end
   end
+
+  def test_should_simulate_read_sample_route_5_file
+    assert_output /Output: 4,4,EAST/ do
+      ToyRobot.simulator(['-f', 'test/samples/route_5.txt'])
+    end
+  end
 end
