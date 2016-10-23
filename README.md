@@ -2,15 +2,25 @@
 
 ## Running app
 
+```
 ruby simulator.run
+```
 
-## Sample files
+## Running all tests
+ 
+```
+bundle exec rake test
+```
 
-* ruby simulator.run -f test/samples/route_1.txt
-* ruby simulator.run -f test/samples/route_2.txt
-* ruby simulator.run -f test/samples/route_3.txt
-* ruby simulator.run -f test/samples/route_4.txt
-* ruby simulator.run -f test/samples/route_5.txt
+## Running sample file command
+
+```
+ruby simulator.run -f test/samples/route_1.txt
+ruby simulator.run -f test/samples/route_2.txt
+ruby simulator.run -f test/samples/route_3.txt
+ruby simulator.run -f test/samples/route_4.txt
+ruby simulator.run -f test/samples/route_5.txt
+```
 
 ## Commands
 
